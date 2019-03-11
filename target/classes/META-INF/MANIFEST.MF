@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: coolio-oauth2-app
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: welcome
+Implementation-Vendor-Id: com.coolio
+Build-Jdk: 1.8.0_181
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/coolio-oauth2-app
+Created-By: Maven Integration for Eclipse
+
