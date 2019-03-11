@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CoolioOauth2AppApplicationTests {
+public class CoolioOauth2ApplicationTests {
 
 	@Test
 	public void contextLoads() {
