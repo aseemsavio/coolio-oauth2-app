@@ -2,7 +2,10 @@ package com.coolio.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -16,10 +19,12 @@ import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
 @DynamicUpdate
+@Table(name="Company")
 public class CompanyEntity {
 
 	@Id
 	@Column(name = "company_code")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	Integer companyCode;
 
 	@Column(name = "company_name")

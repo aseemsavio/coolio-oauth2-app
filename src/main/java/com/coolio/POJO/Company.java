@@ -23,7 +23,7 @@ public class Company {
 
 	public void setCompanyCode(Integer companyCode) {
 		this.companyCode = companyCode;
-	}
+	}//
 
 	public String getCompanyName() {
 		return companyName;

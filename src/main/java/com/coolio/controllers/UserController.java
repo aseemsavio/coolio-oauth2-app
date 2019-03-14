@@ -15,7 +15,7 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
-	@PostMapping("createCompany")
+	@PostMapping("/createCompany")
 	public String createCompany(@RequestBody Company company) {
 		CompanyEntity createdCompanyEntity = userService.createCompany(company);
 		Company createdCompany = new Company();

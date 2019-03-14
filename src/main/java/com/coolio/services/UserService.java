@@ -15,7 +15,7 @@ public class UserService {
 
 	public CompanyEntity createCompany(Company company) {
 		CompanyEntity companyEntity = new CompanyEntity();
-		companyEntity.setCompanyCode(company.getCompanyCode());
+		//companyEntity.setCompanyCode(company.getCompanyCode());
 		companyEntity.setCompanyName(company.getCompanyName());
 		companyEntity.setCompanyDomain(company.getCompanyDomain());
 		return userRepository.save(companyEntity);

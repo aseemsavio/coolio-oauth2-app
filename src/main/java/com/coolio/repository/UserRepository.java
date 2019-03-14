@@ -1,12 +1,9 @@
 package com.coolio.repository;
 
-import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.CrudRepository;
 
-import com.coolio.POJO.Company;
 import com.coolio.entities.CompanyEntity;
 
-public interface UserRepository extends Repository<Company, Integer> {
-
-	CompanyEntity save(CompanyEntity companyEntity);
+public interface UserRepository extends CrudRepository<CompanyEntity, Integer> {
 
 }
