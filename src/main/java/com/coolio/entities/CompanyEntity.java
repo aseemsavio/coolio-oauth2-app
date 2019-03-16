@@ -19,19 +19,19 @@ import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
 @DynamicUpdate
-@Table(name="Company")
+@Table(name = "Company")
 public class CompanyEntity {
 
 	@Id
 	@Column(name = "company_code")
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	Integer companyCode;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer companyCode;
 
 	@Column(name = "company_name")
-	String companyName;
+	private String companyName;
 
 	@Column(name = "company_domain")
-	String companyDomain;
+	private String companyDomain;
 
 	public Integer getCompanyCode() {
 		return companyCode;

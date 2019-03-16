@@ -9,9 +9,9 @@ package com.coolio.POJO;
  */
 public class Company {
 
-	Integer companyCode;
-	String companyName;
-	String companyDomain;
+	private Integer companyCode;
+	private String companyName;
+	private String companyDomain;
 
 	public Company() {
 

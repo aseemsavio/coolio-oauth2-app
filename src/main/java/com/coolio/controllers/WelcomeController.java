@@ -1,5 +1,8 @@
 package com.coolio.controllers;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,9 +17,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class WelcomeController {
+	
+	@Value("${coolio.welcometext}")
+	private String welcomeNote;
+	
+	@Value("${coolio.info.json}")
+	private String coolioInfo;
 
 	@GetMapping("/welcomeNote")
 	public String welcomeController() {
-		return "Welcome to Coolio. This is my first commit with some code. So, wish me luck :)";
+		return welcomeNote;
+	}
+	
+	@GetMapping("/gimmeAppInfo")
+	public String gimmeAppInfo() {
+		return coolioInfo;
 	}
 }
