@@ -57,4 +57,10 @@ public class CompanyEntity {
 		this.companyDomain = companyDomain;
 	}
 
+	@Override
+	public String toString() {
+		return "CompanyEntity [companyCode=" + companyCode + ", companyName=" + companyName + ", companyDomain="
+				+ companyDomain + "]";
+	}
+
 }
