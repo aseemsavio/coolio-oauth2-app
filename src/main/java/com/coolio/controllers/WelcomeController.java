@@ -24,13 +24,14 @@ public class WelcomeController {
 	@Value("${coolio.info.json}")
 	private String coolioInfo;
 
-	@GetMapping("/welcomeNote")
+	@GetMapping("/all/welcomeNote")
 	public String welcomeController() {
 		return welcomeNote;
 	}
 	
-	@GetMapping("/gimmeAppInfo")
+	@GetMapping("/protected/gimmeAppInfo")
 	public String gimmeAppInfo() {
 		return coolioInfo;
 	}
+		
 }

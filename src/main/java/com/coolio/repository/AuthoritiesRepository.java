@@ -2,7 +2,7 @@ package com.coolio.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.coolio.entities.UsersEntity;
+import com.coolio.entities.AuthoritiesEntity;
 
 /**
  * 
@@ -11,6 +11,6 @@ import com.coolio.entities.UsersEntity;
  *
  */
 
-public interface UserRepository extends CrudRepository<UsersEntity, String> {
+public interface AuthoritiesRepository extends CrudRepository<AuthoritiesEntity, String> {
 
 }

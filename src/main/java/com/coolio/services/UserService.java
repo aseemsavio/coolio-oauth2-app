@@ -2,54 +2,64 @@ package com.coolio.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.coolio.POJO.Company;
-import com.coolio.entities.CompanyEntity;
+import com.coolio.POJO.UserCreationRequest;
+import com.coolio.POJO.UserCreationResponse;
+import com.coolio.entities.AuthoritiesEntity;
+import com.coolio.entities.UsersEntity;
+import com.coolio.repository.AuthoritiesRepository;
 import com.coolio.repository.UserRepository;
 
 /**
- * Service Class containing validation of the request body before being sent to
- * the Repository interface.
+ * Service class, containing validations for the User Entity.
  * 
  * @author Aseem Savio
  * @since v1.0
  *
  */
+
 @Service
 public class UserService {
 
 	@Autowired
 	UserRepository userRepository;
 
-	public ResponseEntity<Company> createCompany(Company company) {
+	@Autowired
+	AuthoritiesRepository authoritiesRepository;
 
-		if (company.getCompanyDomain().equals(null) || company.getCompanyName().equals(null)) {
-			Company nullCompany = new Company();
-			return ResponseEntity.badRequest().header("status", "Empty Field(s) cannot be accepted.").body(nullCompany);
-		} else {
+	public ResponseEntity<UserCreationResponse> createUser(UserCreationRequest userCreationRequest) {
+		UsersEntity usersEntity = new UsersEntity();
+		usersEntity.setUserName(userCreationRequest.getUserName());
 
-			CompanyEntity companyEntity = new CompanyEntity();
-			companyEntity.setCompanyName(company.getCompanyName());
-			companyEntity.setCompanyDomain(company.getCompanyDomain());
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		String pass = bCryptPasswordEncoder.encode(userCreationRequest.getPassword());
+		usersEntity.setPassword(pass);
 
-			CompanyEntity isFound = new CompanyEntity();
-			isFound = userRepository.findByCompanyDomain(companyEntity.getCompanyDomain());
+		usersEntity.setEnabled(userCreationRequest.getEnabled());
+		usersEntity.setFirstName(userCreationRequest.getFirstName());
+		usersEntity.setLastName(userCreationRequest.getLastName());
+		usersEntity.setCity(userCreationRequest.getCity());
+		usersEntity.setStatePlace(userCreationRequest.getStatePlace());
+		usersEntity.setZip(userCreationRequest.getZip());
+		usersEntity.setCompanyCode(userCreationRequest.getCompanyCode());
+		usersEntity.setDateOfBirth(userCreationRequest.getDateOfBirth());
+		usersEntity.setMobile(userCreationRequest.getMobile());
 
-			if (isFound != null) {
-				Company nullCompany = new Company();
-				return ResponseEntity.badRequest().header("status", "Duplicate Company cannot be created.")
-						.body(nullCompany);
-			} else {
-				CompanyEntity createdCompanyEntity = userRepository.save(companyEntity);
-				Company createdCompany = new Company();
-				createdCompany.setCompanyCode(createdCompanyEntity.getCompanyCode());
-				createdCompany.setCompanyName(createdCompanyEntity.getCompanyName());
-				createdCompany.setCompanyDomain(createdCompanyEntity.getCompanyDomain());
-				return ResponseEntity.ok().header("status", "success").body(createdCompany);
-			}
-		}
+		UsersEntity entity = new UsersEntity();
+		entity = userRepository.save(usersEntity);
 
+		AuthoritiesEntity authoritiesEntity = new AuthoritiesEntity();
+		authoritiesEntity.setUsername(userCreationRequest.getUserName());
+		authoritiesEntity.setAuthority(userCreationRequest.getAuthority());
+		authoritiesRepository.save(authoritiesEntity);
+
+		UserCreationResponse userCreationResponse = new UserCreationResponse();
+		userCreationResponse.setUsername(entity.getUserName());
+		userCreationResponse.setFirstName(entity.getFirstName());
+		userCreationResponse.setLastName(entity.getLastName());
+		return ResponseEntity.ok().header("status", "success").body(userCreationResponse);
 	}
 
 }
