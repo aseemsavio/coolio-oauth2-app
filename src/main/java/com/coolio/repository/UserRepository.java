@@ -1,7 +1,10 @@
 package com.coolio.repository;
 
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
 
+import com.coolio.POJO.Users;
 import com.coolio.entities.UsersEntity;
 
 /**
@@ -12,5 +15,7 @@ import com.coolio.entities.UsersEntity;
  */
 
 public interface UserRepository extends CrudRepository<UsersEntity, String> {
+
+	UsersEntity findByUserName(String userName);
 
 }

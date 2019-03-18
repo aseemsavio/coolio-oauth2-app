@@ -26,5 +26,4 @@ public class UsersUtills {
 		}
 		return true;
 	}
-
 }
