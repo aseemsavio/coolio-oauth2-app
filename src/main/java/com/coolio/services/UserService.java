@@ -5,12 +5,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.coolio.POJO.UserCreationRequest;
-import com.coolio.POJO.UserCreationResponse;
 import com.coolio.entities.AuthoritiesEntity;
 import com.coolio.entities.UsersEntity;
 import com.coolio.repository.AuthoritiesRepository;
 import com.coolio.repository.UserRepository;
+import com.coolio.templates.UserCreationRequest;
+import com.coolio.templates.UserCreationResponse;
+import com.coolio.utils.UsersUtills;
 
 /**
  * Service class, containing validations for the User Entity.
@@ -30,36 +31,42 @@ public class UserService {
 	AuthoritiesRepository authoritiesRepository;
 
 	public ResponseEntity<UserCreationResponse> createUser(UserCreationRequest userCreationRequest) {
-		UsersEntity usersEntity = new UsersEntity();
-		usersEntity.setUserName(userCreationRequest.getUserName());
+		UsersUtills usersUtills = new UsersUtills();
+		if (usersUtills.everyThingInPlace(userCreationRequest)) {
+			UsersEntity usersEntity = new UsersEntity();
+			usersEntity.setUserName(userCreationRequest.getUserName());
 
-		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-		String pass = bCryptPasswordEncoder.encode(userCreationRequest.getPassword());
-		usersEntity.setPassword(pass);
+			BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+			String pass = bCryptPasswordEncoder.encode(userCreationRequest.getPassword());
+			usersEntity.setPassword(pass);
 
-		usersEntity.setEnabled(userCreationRequest.getEnabled());
-		usersEntity.setFirstName(userCreationRequest.getFirstName());
-		usersEntity.setLastName(userCreationRequest.getLastName());
-		usersEntity.setCity(userCreationRequest.getCity());
-		usersEntity.setStatePlace(userCreationRequest.getStatePlace());
-		usersEntity.setZip(userCreationRequest.getZip());
-		usersEntity.setCompanyCode(userCreationRequest.getCompanyCode());
-		usersEntity.setDateOfBirth(userCreationRequest.getDateOfBirth());
-		usersEntity.setMobile(userCreationRequest.getMobile());
+			usersEntity.setEnabled(userCreationRequest.getEnabled());
+			usersEntity.setFirstName(userCreationRequest.getFirstName());
+			usersEntity.setLastName(userCreationRequest.getLastName());
+			usersEntity.setCity(userCreationRequest.getCity());
+			usersEntity.setStatePlace(userCreationRequest.getStatePlace());
+			usersEntity.setZip(userCreationRequest.getZip());
+			usersEntity.setCompanyCode(userCreationRequest.getCompanyCode());
+			usersEntity.setDateOfBirth(userCreationRequest.getDateOfBirth());
+			usersEntity.setMobile(userCreationRequest.getMobile());
 
-		UsersEntity entity = new UsersEntity();
-		entity = userRepository.save(usersEntity);
+			UsersEntity entity = new UsersEntity();
+			entity = userRepository.save(usersEntity);
 
-		AuthoritiesEntity authoritiesEntity = new AuthoritiesEntity();
-		authoritiesEntity.setUsername(userCreationRequest.getUserName());
-		authoritiesEntity.setAuthority(userCreationRequest.getAuthority());
-		authoritiesRepository.save(authoritiesEntity);
+			AuthoritiesEntity authoritiesEntity = new AuthoritiesEntity();
+			authoritiesEntity.setUsername(userCreationRequest.getUserName());
+			authoritiesEntity.setAuthority(userCreationRequest.getAuthority());
+			authoritiesRepository.save(authoritiesEntity);
 
-		UserCreationResponse userCreationResponse = new UserCreationResponse();
-		userCreationResponse.setUsername(entity.getUserName());
-		userCreationResponse.setFirstName(entity.getFirstName());
-		userCreationResponse.setLastName(entity.getLastName());
-		return ResponseEntity.ok().header("status", "success").body(userCreationResponse);
+			UserCreationResponse userCreationResponse = new UserCreationResponse();
+			userCreationResponse.setUsername(entity.getUserName());
+			userCreationResponse.setFirstName(entity.getFirstName());
+			userCreationResponse.setLastName(entity.getLastName());
+			return ResponseEntity.ok().header("status", "success").body(userCreationResponse);
+		} else {
+			UserCreationResponse nullUserCreationResponse = new UserCreationResponse();
+			return ResponseEntity.badRequest().header("status", "Empty field(s) cannot be accepted.")
+					.body(nullUserCreationResponse);
+		}
 	}
-
 }

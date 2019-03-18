@@ -1,4 +1,4 @@
-package com.coolio.POJO;
+package com.coolio.templates;
 
 /**
  * Response Template for User Creation.
