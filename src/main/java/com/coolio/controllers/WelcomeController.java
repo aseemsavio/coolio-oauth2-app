@@ -24,6 +24,10 @@ public class WelcomeController {
 	@Value("${coolio.info.json}")
 	private String coolioInfo;
 
+	public String index() {
+		return "index";
+	}
+	
 	@GetMapping("/all/welcomeNote")
 	public String welcomeController() {
 		return welcomeNote;

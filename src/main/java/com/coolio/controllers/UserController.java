@@ -29,6 +29,11 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
+	
+	@GetMapping("/protected/showMyProfile")
+	public ResponseEntity<SearchUserResponse> showProfileOnLogOn( Authentication authentication){
+		return userService.showProfileOnLogOn(authentication);
+	}
 
 	@PostMapping("/protectedAdmin/createUser")
 	public ResponseEntity<UserCreationResponse> createUser(@RequestBody UserCreationRequest userCreationRequest) {

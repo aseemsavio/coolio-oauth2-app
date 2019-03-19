@@ -106,6 +106,12 @@ public class UserService {
 		}
 	}
 
+	public ResponseEntity<SearchUserResponse> showProfileOnLogOn(Authentication authentication) {
+		String userName = authentication.getName();
+		ResponseEntity<SearchUserResponse> responseEntity = findByUserName(userName, authentication);
+		return responseEntity;
+	}
+
 	public Integer sameOrganizationCheck(Authentication authentication) {
 		String userName = authentication.getName();
 		UsersEntity userEntity = new UsersEntity();
