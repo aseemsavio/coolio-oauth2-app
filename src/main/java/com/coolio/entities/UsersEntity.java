@@ -48,7 +48,7 @@ public class UsersEntity {
 	@Column(name = "mobile")
 	private String mobile;
 
-	@Column(name = "photo")
+	@Column(name = "photo_url")
 	private String displayPictureURL;
 
 	public String getDisplayPictureURL() {

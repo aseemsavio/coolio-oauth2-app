@@ -19,7 +19,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
 @DynamicUpdate
-@Table(name = "Company")
+@Table(name = "company")
 public class CompanyEntity {
 
 	@Id

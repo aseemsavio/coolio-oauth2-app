@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.coolio.services.UserService;
+import com.coolio.templates.FindUserRequest;
 import com.coolio.templates.SearchUserResponse;
 import com.coolio.templates.UserCreationRequest;
 import com.coolio.templates.UserCreationResponse;
@@ -29,9 +30,9 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
-	
+
 	@GetMapping("/protected/showMyProfile")
-	public ResponseEntity<SearchUserResponse> showProfileOnLogOn( Authentication authentication){
+	public ResponseEntity<SearchUserResponse> showProfileOnLogOn(Authentication authentication) {
 		return userService.showProfileOnLogOn(authentication);
 	}
 
@@ -39,9 +40,11 @@ public class UserController {
 	public ResponseEntity<UserCreationResponse> createUser(@RequestBody UserCreationRequest userCreationRequest) {
 		return userService.createUser(userCreationRequest);
 	}
-	
-	@GetMapping("/protected/findByUserName/{user_name}")
-	public ResponseEntity<SearchUserResponse> findByUserName(@PathVariable("user_name") String userName, Authentication authentication){
+
+	@PostMapping("/protected/findByUserName")
+	public ResponseEntity<SearchUserResponse> findByUserName(@RequestBody FindUserRequest findUserRequest,
+			Authentication authentication) {
+		String userName = findUserRequest.getUserName();
 		return userService.findByUserName(userName, authentication);
 	}
 
