@@ -22,6 +22,15 @@ public class UserCreationRequest {
 	private Date dateOfBirth;
 	private String mobile;
 	private String authority;
+	private String displayPictureURL;
+
+	public String getDisplayPictureURL() {
+		return displayPictureURL;
+	}
+
+	public void setDisplayPictureURL(String displayPictureURL) {
+		this.displayPictureURL = displayPictureURL;
+	}
 
 	public String getUserName() {
 		return userName;

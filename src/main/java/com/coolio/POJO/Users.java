@@ -23,6 +23,15 @@ public class Users {
 	private Integer companyCode;
 	private Date dateOfBirth;
 	private String mobile;
+	private String displayPictureURL;
+
+	public String getDisplayPictureURL() {
+		return displayPictureURL;
+	}
+
+	public void setDisplayPictureURL(String displayPictureURL) {
+		this.displayPictureURL = displayPictureURL;
+	}
 
 	public String getUserName() {
 		return userName;

@@ -51,6 +51,7 @@ public class UserService {
 			usersEntity.setCompanyCode(userCreationRequest.getCompanyCode());
 			usersEntity.setDateOfBirth(userCreationRequest.getDateOfBirth());
 			usersEntity.setMobile(userCreationRequest.getMobile());
+			usersEntity.setDisplayPictureURL(userCreationRequest.getDisplayPictureURL());
 
 			UsersEntity entity = new UsersEntity();
 			entity = userRepository.save(usersEntity);
@@ -92,6 +93,7 @@ public class UserService {
 			searchUserResponse.setCompanyCode(usersEntity.getCompanyCode());
 			searchUserResponse.setDateOfBirth(usersEntity.getDateOfBirth());
 			searchUserResponse.setMobile(usersEntity.getMobile());
+			searchUserResponse.setDisplayPictureURL(usersEntity.getDisplayPictureURL());
 			searchUserResponse.setAuthority(authoritiesEntity.getAuthority());
 
 			Integer companyCodeOfUser = sameOrganizationCheck(authentication);

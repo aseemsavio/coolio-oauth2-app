@@ -11,7 +11,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
 @DynamicUpdate
-@Table(name="users")
+@Table(name = "users")
 public class UsersEntity {
 
 	@Id
@@ -47,6 +47,17 @@ public class UsersEntity {
 
 	@Column(name = "mobile")
 	private String mobile;
+
+	@Column(name = "photo")
+	private String displayPictureURL;
+
+	public String getDisplayPictureURL() {
+		return displayPictureURL;
+	}
+
+	public void setDisplayPictureURL(String displayPictureURL) {
+		this.displayPictureURL = displayPictureURL;
+	}
 
 	public String getUserName() {
 		return userName;
@@ -140,6 +151,7 @@ public class UsersEntity {
 	public String toString() {
 		return "UsersEntity [userName=" + userName + ", password=" + password + ", enabled=" + enabled + ", firstName="
 				+ firstName + ", lastName=" + lastName + ", city=" + city + ", statePlace=" + statePlace + ", zip="
-				+ zip + ", companyCode=" + companyCode + ", dateOfBirth=" + dateOfBirth + ", mobile=" + mobile + "]";
+				+ zip + ", companyCode=" + companyCode + ", dateOfBirth=" + dateOfBirth + ", mobile=" + mobile
+				+ "displayPictureURL=" + displayPictureURL + "]";
 	}
 }
