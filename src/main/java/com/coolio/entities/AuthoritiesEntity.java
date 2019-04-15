@@ -38,4 +38,10 @@ public class AuthoritiesEntity {
 	public void setAuthority(String authority) {
 		this.authority = authority;
 	}
+
+	@Override
+	public String toString() {
+		return "AuthoritiesEntity [username=" + username + ", authority=" + authority + "]";
+	}
+	
 }

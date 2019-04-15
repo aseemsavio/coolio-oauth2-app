@@ -16,5 +16,4 @@ import com.coolio.entities.AuthoritiesEntity;
 public interface AuthoritiesRepository extends CrudRepository<AuthoritiesEntity, String> {
 
 	AuthoritiesEntity findByUsername(String userName);
-
 }

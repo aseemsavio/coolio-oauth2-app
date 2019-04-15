@@ -7,13 +7,19 @@ package com.coolio.templates;
  */
 public class FindUserRequest {
 
-	private String userName;
+	private String searchCode;
 
-	public String getUserName() {
-		return userName;
+	public String getSearchCode() {
+		return searchCode;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public FindUserRequest() {
+		super();
 	}
+
+	public FindUserRequest(String searchCode) {
+		super();
+		this.searchCode = searchCode;
+	}
+
 }

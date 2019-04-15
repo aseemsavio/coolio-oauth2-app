@@ -32,7 +32,7 @@ public class UserController {
 	UserService userService;
 
 	@GetMapping("/protected/showMyProfile")
-	public ResponseEntity<SearchUserResponse> showProfileOnLogOn(Authentication authentication) {
+	public ResponseEntity<List<SearchUserResponse>> showProfileOnLogOn(Authentication authentication) {
 		return userService.showProfileOnLogOn(authentication);
 	}
 
@@ -40,12 +40,10 @@ public class UserController {
 	public ResponseEntity<UserCreationResponse> createUser(@RequestBody UserCreationRequest userCreationRequest) {
 		return userService.createUser(userCreationRequest);
 	}
-
+	
 	@PostMapping("/protected/findByUserName")
-	public ResponseEntity<SearchUserResponse> findByUserName(@RequestBody FindUserRequest findUserRequest,
-			Authentication authentication) {
-		String userName = findUserRequest.getUserName();
-		return userService.findByUserName(userName, authentication);
+	public ResponseEntity<List<SearchUserResponse>> searchUser(@RequestBody FindUserRequest findUserRequest, Authentication authentication){
+		return userService.searchUserByUserName(findUserRequest, authentication);
 	}
 
 }

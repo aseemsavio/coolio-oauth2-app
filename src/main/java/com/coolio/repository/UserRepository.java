@@ -18,4 +18,6 @@ public interface UserRepository extends CrudRepository<UsersEntity, String> {
 
 	UsersEntity findByUserName(String userName);
 
+	List<UsersEntity> findByFirstName(String firstName);
+
 }

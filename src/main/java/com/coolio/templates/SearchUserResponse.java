@@ -12,6 +12,7 @@ import java.util.Date;
 
 public class SearchUserResponse {
 
+	private Integer responseID;
 	private String userName;
 	private String firstName;
 	private String lastName;
@@ -23,6 +24,14 @@ public class SearchUserResponse {
 	private String mobile;
 	private String authority;
 	private String displayPictureURL;
+
+	public Integer getResponseID() {
+		return responseID;
+	}
+
+	public void setResponseID(Integer responseID) {
+		this.responseID = responseID;
+	}
 
 	public String getDisplayPictureURL() {
 		return displayPictureURL;
