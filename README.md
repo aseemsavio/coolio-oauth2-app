@@ -1,6 +1,6 @@
 # Coolio OAuth2 Application
 
-This application is a secure micro service that stores information about people belonging to different organizations. This micro service will be used as an *authorization server* for the future applications that come under the brand _Savio OSS_.
+This application is a secure micro service that stores information about people belonging to different organizations. This micro service will be used as an *authorization server* for the future applications that come under the brand _Savio Apps_.
 
 ## Code Structure
 The micro service has a **controller** package where all the end points are defined. 
@@ -17,7 +17,7 @@ The **POJO** package has plain old java object classes for the Entity classes th
 
 The **template** package has templates designed for request and response structures. 
 
-The **Utils ** package has utilities, as the name suggests.
+The **Utils** package has utilities, as the name suggests.
 
 ## Major Units
 There are two major units in the application - **Users** and **Company**. 
