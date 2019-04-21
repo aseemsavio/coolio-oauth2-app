@@ -28,6 +28,11 @@ public class WelcomeController {
 		return "index";
 	}
 	
+	@GetMapping("/all/lub")
+	public String lubDub() {
+		return "dub";
+	}
+	
 	@GetMapping("/all/welcomeNote")
 	public String welcomeController() {
 		return welcomeNote;
