@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import reactor.core.publisher.Mono;
+
 /**
  * This is the end point to get basic non sensitive information about the
  * application
@@ -28,9 +30,11 @@ public class WelcomeController {
 		return "index";
 	}
 	
+	// To check if the microservice is live.
 	@GetMapping("/all/lub")
-	public String lubDub() {
-		return "dub";
+	public Mono<String> lubDub() {
+		Mono<String> dub = Mono.just("dub");
+		return dub;
 	}
 	
 	@GetMapping("/all/welcomeNote")
