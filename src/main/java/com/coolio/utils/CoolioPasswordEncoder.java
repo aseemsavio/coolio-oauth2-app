@@ -5,7 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class CoolioPasswordEncoder {
 
 	public static void main(String[] args) {
-		String adminPassword = "saviorocks";
+		String adminPassword = "aseempassword";
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		System.out.println("Admin Password: " + bCryptPasswordEncoder.encode(adminPassword));
 		
