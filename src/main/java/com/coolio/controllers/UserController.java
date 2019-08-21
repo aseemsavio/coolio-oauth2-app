@@ -17,6 +17,7 @@ import com.coolio.templates.FindUserRequest;
 import com.coolio.templates.SearchUserResponse;
 import com.coolio.templates.UserCreationRequest;
 import com.coolio.templates.UserCreationResponse;
+import com.coolio.templates.UserNamePassword;
 
 import reactor.core.publisher.Mono;
 
@@ -50,10 +51,9 @@ public class UserController {
 		return userService.searchUserByUserName(findUserRequest, authentication);
 	}
 	
-	@GetMapping("/all/userFound")
-	public Mono<String> userFound() {
-		Mono<String> dub = Mono.just("USERFOUND");
-		return dub;
+	@PostMapping("/all/userFound")
+	public Mono<String> userFound(@RequestBody UserNamePassword usernamePassword) {
+		return userService.isUserFound(usernamePassword);
 	}
 
 }

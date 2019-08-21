@@ -17,7 +17,10 @@ import com.coolio.templates.FindUserRequest;
 import com.coolio.templates.SearchUserResponse;
 import com.coolio.templates.UserCreationRequest;
 import com.coolio.templates.UserCreationResponse;
+import com.coolio.templates.UserNamePassword;
 import com.coolio.utils.UsersUtills;
+
+import reactor.core.publisher.Mono;
 
 /**
  * Service class, containing validations for the User Entity.
@@ -145,5 +148,17 @@ public class UserService {
 		}
 		return null;
 	}
+
+	public Mono<String> isUserFound(UserNamePassword usernamePassword) {
+		UsersEntity entity = userRepository.findByUserNameAndPassword(usernamePassword.getUserName(), usernamePassword.getPassword());
+		if(entity.getUserName().equals(usernamePassword.getUserName()) && entity.getPassword().equals(usernamePassword.getPassword())) {
+			Mono<String> yup = Mono.just("1");
+			return yup;
+		} else {
+			Mono<String> nope = Mono.just("0");
+			return nope;
+		}
+	}
+
 
 }
