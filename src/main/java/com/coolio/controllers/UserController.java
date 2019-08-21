@@ -18,6 +18,8 @@ import com.coolio.templates.SearchUserResponse;
 import com.coolio.templates.UserCreationRequest;
 import com.coolio.templates.UserCreationResponse;
 
+import reactor.core.publisher.Mono;
+
 /**
  * Contains REST end points for the User Entity operations.
  * 
@@ -46,6 +48,12 @@ public class UserController {
 	@PostMapping("/protected/findByUserName")
 	public ResponseEntity<List<SearchUserResponse>> searchUser(@RequestBody FindUserRequest findUserRequest, Authentication authentication){
 		return userService.searchUserByUserName(findUserRequest, authentication);
+	}
+	
+	@GetMapping("/all/userFound")
+	public Mono<String> userFound() {
+		Mono<String> dub = Mono.just("USERFOUND");
+		return dub;
 	}
 
 }
