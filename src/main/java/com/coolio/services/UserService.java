@@ -151,15 +151,11 @@ public class UserService {
 	}
 
 	public String isUserFound(UserNamePassword usernamePassword) {
-		UsersEntity entity = userRepository.findByUserNameAndPassword(usernamePassword.getUserName(), usernamePassword.getPassword());
-		System.out.println("ENTITY " + entity.getUserName() + " " + entity.getPassword() + " REQUEST "  + usernamePassword.getUserName() + " " + usernamePassword.getPassword());
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		UsersEntity entity = userRepository.findByUserNameAndPassword(usernamePassword.getUserName(), bCryptPasswordEncoder.encode(usernamePassword.getPassword()));
 		if(entity != null) {
 			System.out.println("ENTITY " + entity.getUserName() + " " + entity.getPassword() + " REQUEST "  + usernamePassword.getUserName() + " " + usernamePassword.getPassword());
-			if(entity.getUserName().equals(usernamePassword.getUserName()) && entity.getPassword().equals(usernamePassword.getPassword())) {
-				return CoolioConstants.BOOLEAN_YES;
-			} else {
-				return CoolioConstants.BOOLEAN_NO;
-			}
+			return CoolioConstants.BOOLEAN_YES;
 		}
 		return CoolioConstants.BOOLEAN_NO;
 	}
