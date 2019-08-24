@@ -18,7 +18,6 @@ import com.coolio.templates.FindUserRequest;
 import com.coolio.templates.SearchUserResponse;
 import com.coolio.templates.UserCreationRequest;
 import com.coolio.templates.UserCreationResponse;
-import com.coolio.templates.UserNamePassword;
 
 import reactor.core.publisher.Mono;
 
