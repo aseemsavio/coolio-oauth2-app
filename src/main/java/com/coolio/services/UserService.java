@@ -152,6 +152,7 @@ public class UserService {
 
 	public String isUserFound(UserNamePassword usernamePassword) {
 		UsersEntity entity = userRepository.findByUserNameAndPassword(usernamePassword.getUserName(), usernamePassword.getPassword());
+		System.out.println("ENTITY " + entity.getUserName() + " " + entity.getPassword() + " REQUEST "  + usernamePassword.getUserName() + " " + usernamePassword.getPassword());
 		if(entity != null) {
 			System.out.println("ENTITY " + entity.getUserName() + " " + entity.getPassword() + " REQUEST "  + usernamePassword.getUserName() + " " + usernamePassword.getPassword());
 			if(entity.getUserName().equals(usernamePassword.getUserName()) && entity.getPassword().equals(usernamePassword.getPassword())) {
