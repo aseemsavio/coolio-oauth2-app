@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.coolio.constants.CoolioConstants;
 import com.coolio.services.UserService;
 import com.coolio.templates.FindUserRequest;
 import com.coolio.templates.SearchUserResponse;
@@ -54,6 +55,11 @@ public class UserController {
 	@PostMapping("/all/userFound")
 	public String userFound(@RequestBody UserNamePassword usernamePassword) {
 		return userService.isUserFound(usernamePassword);
+	}
+	
+	@GetMapping("/protected/isUserFound")
+	public String isUserFound() {
+		return CoolioConstants.BOOLEAN_YES;
 	}
 
 }

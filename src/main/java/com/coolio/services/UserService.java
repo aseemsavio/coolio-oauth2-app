@@ -152,6 +152,7 @@ public class UserService {
 
 	public String isUserFound(UserNamePassword usernamePassword) {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		// print the password encoded here.
 		UsersEntity entity = userRepository.findByUserNameAndPassword(usernamePassword.getUserName(), bCryptPasswordEncoder.encode(usernamePassword.getPassword()));
 		if(entity != null) {
 			System.out.println("ENTITY " + entity.getUserName() + " " + entity.getPassword() + " REQUEST "  + usernamePassword.getUserName() + " " + usernamePassword.getPassword());
