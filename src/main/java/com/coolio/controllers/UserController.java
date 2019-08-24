@@ -52,11 +52,6 @@ public class UserController {
 		return userService.searchUserByUserName(findUserRequest, authentication);
 	}
 	
-	@PostMapping("/all/userFound")
-	public String userFound(@RequestBody UserNamePassword usernamePassword) {
-		return userService.isUserFound(usernamePassword);
-	}
-	
 	@GetMapping("/protected/isUserFound")
 	public String isUserFound() {
 		return CoolioConstants.BOOLEAN_YES;
