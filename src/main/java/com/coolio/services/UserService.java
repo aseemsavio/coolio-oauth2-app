@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.coolio.constants.CoolioConstants;
 import com.coolio.entities.AuthoritiesEntity;
 import com.coolio.entities.UsersEntity;
 import com.coolio.repository.AuthoritiesRepository;
@@ -149,14 +150,12 @@ public class UserService {
 		return null;
 	}
 
-	public Mono<String> isUserFound(UserNamePassword usernamePassword) {
+	public String isUserFound(UserNamePassword usernamePassword) {
 		UsersEntity entity = userRepository.findByUserNameAndPassword(usernamePassword.getUserName(), usernamePassword.getPassword());
 		if(entity.getUserName().equals(usernamePassword.getUserName()) && entity.getPassword().equals(usernamePassword.getPassword())) {
-			Mono<String> yup = Mono.just("1");
-			return yup;
+			return CoolioConstants.BOOLEAN_YES;
 		} else {
-			Mono<String> nope = Mono.just("0");
-			return nope;
+			return CoolioConstants.BOOLEAN_NO;
 		}
 	}
 
