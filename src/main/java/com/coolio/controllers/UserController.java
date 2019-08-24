@@ -52,7 +52,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/all/userFound")
-	public Mono<String> userFound(@RequestBody UserNamePassword usernamePassword) {
+	public String userFound(@RequestBody UserNamePassword usernamePassword) {
 		return userService.isUserFound(usernamePassword);
 	}
 
